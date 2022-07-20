@@ -1,29 +1,43 @@
-<%= render 'list', book: @book %>
+<div class="container">
+   <div class="row">
+      <%= render 'new', book: @book, user: @user %>
 
-<div class="col-md-8 offset-md-1">
-  <h2>Book detail</h2>
-    <table class="table">
-      <tbody>
-        <% @books.each do |book| %>
-          <tr>
-            <td>
-              <%= image_tag book.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %><br>
-              <%= link_to "book.user.name",index_user_path(user.id) %>
-            </td>
-            <td><%= link_to 'book.title',show_book_path(@book) %></td>
-            <td><%= book.body %></td>
-            <td>
-              <% if @book.user == current_user %>
-                <%= link_to "Edit", edit_book_path(@book) %>
-              <% end %>
-            </td>
-            <td>
-               <% if @book.user == current_user %>
-                 <%= link_to "Destroy", book_path(@book), method: :delete %>
-               <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+        <div class="col-md-8 offset-md-1">
+          <h2>Book detail</h2>
+            <table class="table">
+              <tbody>
+  
+                <tr>
+                  <td>
+                    <%= image_tag @user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %><br>
+                      <%= link_to books_path(@book) do %>
+                       <%= @user.name %>
+                      <% end %>
+                  </td>
+            
+                  <td>
+                    <%= link_to books_path(@book) do %>
+                     <%= @book.title %>
+                    <% end %>
+                  </td>
+                  <td><%= @book.body %></td>
+              
+                  <td>
+                    <% if @book == current_user %>
+                      <%= link_to "Edit", edit_book_path %>
+                    <% end %>
+                  </td>
+                 
+                  <td>
+                   <% if @book == current_user %>
+                     <%= link_to "Destroy", book_path, method: :delete %>
+                   <% end %>
+                  </td>
+                </tr>
+    
+              </tbody>
+            </table>
+       </div>
+       
+  </div>
 </div>
