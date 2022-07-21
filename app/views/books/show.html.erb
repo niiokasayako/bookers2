@@ -6,7 +6,7 @@
           <h2>Book detail</h2>
             <table class="table">
               <tbody>
-  
+
                 <tr>
                   <td>
                     <%= image_tag @user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %><br>
@@ -14,30 +14,34 @@
                        <%= @user.name %>
                       <% end %>
                   </td>
-            
+
                   <td>
-                    <%= link_to books_path(@book) do %>
+                    <%= link_to book_path(@book) do %>
                      <%= @book.title %>
                     <% end %>
                   </td>
                   <td><%= @book.body %></td>
-              
+
                   <td>
-                    <% if @book == current_user %>
-                      <%= link_to "Edit", edit_book_path %>
+                    <% if @book.user == current_user %>
+                      <%= link_to edit_book_path(@book) do %>
+                        <button type="button" class="btn btn-success">Edit</button>
+                      <% end %>
                     <% end %>
                   </td>
-                 
+
                   <td>
-                   <% if @book == current_user %>
-                     <%= link_to "Destroy", book_path, method: :delete %>
+                   <% if @book.user == current_user %>
+                     <%= link_to book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？" do %>
+                       <button type="button" class="btn btn-danger">Destroy</button>
+                     <% end %>
                    <% end %>
                   </td>
                 </tr>
-    
+
               </tbody>
             </table>
        </div>
-       
+
   </div>
 </div>

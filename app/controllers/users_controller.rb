@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
    if @user.save
-    redirect_to root_path, notice: 'ユーザー新規登録を完了しました'
+    redirect_to root_path, notice: 'Welcome! You have signed up successfully.'
    else
     render :new
    end
