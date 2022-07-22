@@ -9,9 +9,9 @@
 
                 <tr>
                   <td>
-                    <%= image_tag @user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %><br>
-                      <%= link_to books_path(@book) do %>
-                       <%= @user.name %>
+                    <%= link_to user_path(@user) do %>
+                    <%= image_tag @book.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %><br>
+                       <%= @book.user.name %>
                       <% end %>
                   </td>
 
